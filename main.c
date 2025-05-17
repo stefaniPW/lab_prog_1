@@ -1,16 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include "clientes.h"//colocar sempre em aspas biblioteca criada
 
 #define QTD_CLIENTE 100
 #define QTD_PRODUTOS 100
 
 typedef struct {
     char nome [100];
+    char email [100];
+    
 } Cliente;
 
 typedef struct {
     char nome [100];
+    double preco;
+
 }Produto;
 
 Cliente clientes [QTD_CLIENTE];
@@ -19,7 +22,7 @@ Produto produtos [QTD_PRODUTOS];
 int index_cliente = 0;
 int index_cliente2 = 0;
 
-void insere_produto();
+void insere_produtos();
 void insere_clientes();
 void listar_clientes ();
 void listar_produtos(); 
@@ -41,7 +44,7 @@ int main (){
             insere_clientes();
             break;
         case 2:    
-            insere_produto();
+            insere_produtos();
             break;
         case 4:
             listar_clientes();
@@ -65,8 +68,11 @@ void insere_clientes(){
     if (index_cliente >= QTD_CLIENTE){
         printf("Limite de clientes atingido!\n\n");
     }else{
-        printf("insira o cliente: \t");
+        printf("insira o nome do cliente: \t");
         scanf("%s", clientes[index_cliente].nome);
+        printf("insira o e-mail do cliente: \t");
+        scanf("%s", clientes[index_cliente].email);
+
         index_cliente++;   //index_cliente = index_cliente + 1;
 
         printf("Deseja inserir mais clientes?\n");
@@ -83,20 +89,22 @@ void insere_clientes(){
 void listar_clientes (){ //listas = imprimi-r
     int i;
     for (i = 0; i < index_cliente; i++){
-        printf("Cliente %d: %s\n\n", (i+1), clientes[i]);
+        printf("Cliente %d - nome: %s\n\n", (i+1), clientes[i].nome);
+        printf("Cliente %d - email: %s\n\n",(i+1), clientes[i].email);
     }
    
 }
 
-void insere_produto(){
+void insere_produtos(){
     int opcao;
     if (index_cliente2 >= QTD_PRODUTOS){
         printf ("Limite de produtos atingido!\n\n");
     }else{
-        printf ("insira o produto: \t");
+        printf ("insira o nome do produto: \t");
         scanf("%s", produtos[index_cliente2].nome);
+        printf ("insira o preço do produto: \t");
+        scanf("%s", produtos[index_cliente2].preco);
         index_cliente2++;
-
 
         printf("Deseja inserir mais produtos?\n");
         printf("1 - SIM\n");
@@ -109,10 +117,11 @@ void insere_produto(){
     }
 }
 
-void listar_produtos(){ //listas = imprimi-r
+void listar_produtos(){
     int j;
     for (j = 0; j < index_cliente2; j++){
-        printf("produtos %d: %s\n\n", (j+1), produtos[j]);
-        
+        printf("Produtos %d - nome: %s\n\n", (j+1), produtos[j].nome);
+        printf("Produtos %d - preço: %lf\n\n", (j+1), produtos[j].preco);
+
     }
 }
