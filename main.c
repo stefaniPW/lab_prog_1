@@ -20,7 +20,7 @@ Cliente clientes [QTD_CLIENTE];
 Produto produtos [QTD_PRODUTOS];
 
 int index_cliente = 0;
-int index_cliente2 = 0;
+int index_produto = 0;
 
 void insere_produtos();
 void insere_clientes();
@@ -97,14 +97,14 @@ void listar_clientes (){ //listas = imprimi-r
 
 void insere_produtos(){
     int opcao;
-    if (index_cliente2 >= QTD_PRODUTOS){
+    if (index_produto >= QTD_PRODUTOS){
         printf ("Limite de produtos atingido!\n\n");
     }else{
         printf ("insira o nome do produto: \t");
-        scanf("%s", produtos[index_cliente2].nome);
+        scanf("%s", produtos[index_produto].nome);
         printf ("insira o preço do produto: \t");
-        scanf("%s", produtos[index_cliente2].preco);
-        index_cliente2++;
+        scanf("%s", produtos[index_produto].preco);
+        index_produto++;
 
         printf("Deseja inserir mais produtos?\n");
         printf("1 - SIM\n");
@@ -119,7 +119,7 @@ void insere_produtos(){
 
 void listar_produtos(){
     int j;
-    for (j = 0; j < index_cliente2; j++){
+    for (j = 0; j < index_produto; j++){
         printf("Produtos %d - nome: %s\n\n", (j+1), produtos[j].nome);
         printf("Produtos %d - preço: %lf\n\n", (j+1), produtos[j].preco);
 
